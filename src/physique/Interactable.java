@@ -1,6 +1,8 @@
 package physique;
 
-public class Interactable extends ObjetJeu{
+import javafx.scene.Node;
+
+public class Interactable extends ObjectGame{
 
 	 
 	

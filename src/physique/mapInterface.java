@@ -5,7 +5,7 @@ public interface mapInterface {
 	public String baselevel = 
 			"WWWWWWWWWWWWWWW\n"+
 			"WLLLLLLLLLLLLLW\n"+
-			"WLXLLLLLLLWLLLW\n"+
+			"WLLLLLLLLLWLLLW\n"+
 			"WLLLLLLLLLLLLLW\n"+
 			"LLLLLLWLLLLLLLW\n"+
 			"WLLLLLLLLLLLLLW\n"+

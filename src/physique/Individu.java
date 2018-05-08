@@ -13,28 +13,27 @@ public class Individu extends Interactable{
 		super();
 		this.etat = etat;
 		this.sens = 0;
-		this.view = new ImageSprite[4][2];
+		this.view = new ImageSprite[4][3];
 		loadImage(name);
 	}
 	
 	public ImageSprite getActualImage() {
+		System.out.println("On eut le sens et etat"+this.sens+" -- "+this.etat);
 		return this.view[this.sens][this.etat];
 	}
 
-
+	
 
 	public ImageSprite[][] loadImage(String name) {
-		
+		System.out.println("CETTE FONCTION EST APPELEE");
 		System.out.println("On veut chercher le nom de "+name);
-		view[0][0] = appealImage("SI/"+name+"0_0.png");
-		view[1][0] = appealImage("SI/"+name+"1_0.png");
-		view[2][0] = appealImage("SI/"+name+"2_0.png");
-		view[3][0] = appealImage("SI/"+name+"3_0.png");
 		
-		view[0][1] = appealImage("SI/"+name+"0_0.png");
-		view[1][1] = appealImage("SI/"+name+"1_0.png");
-		view[2][1] = appealImage("SI/"+name+"2_0.png");
-		view[3][1] = appealImage("SI/"+name+"3_0.png");
+		for (int sens = 0 ; sens <4 ; sens++) {
+			for (int etat = 0 ; etat < 3 ; etat++) {
+				view[sens][etat] = appealImage("SI/"+name+sens+"_"+etat+".png");
+				view[sens][etat].setShiftY(-SIZE/2);
+			}
+		}
 		
 		return view;
 		
@@ -53,7 +52,13 @@ public class Individu extends Interactable{
 	}
 
 	public void setSens(int sens) {
+		int x = this.getActualImage().getShiftX();
+		int y = this.getActualImage().getShiftY();
 		this.sens = sens;
+		this.getActualImage().setShiftX(x);
+		this.
+		getActualImage().setShiftY(y);
+		
 	}
 
 	public ImageSprite[][] getView() {
@@ -79,6 +84,20 @@ public class Individu extends Interactable{
 	public void setYY(int yY) {
 		YY = yY;
 	}
+	public int sensY() {
+		return (1+this.sens)*(this.sens-1)*(this.sens-3)/3;
+	}
+	public int sensY(int senss) {
+		return (1+senss)*(senss-1)*(senss-3)/3;
+	}
+	public int sensX() {
+		return sensY(3-this.sens);
+	}
 	
+	public void mover() {
+		System.out.println("On move là !!! :D (Individu) x="+sensX()+" y="+sensY());
+		this.XX+=sensX();
+		this.YY+=sensY();
+	}
 	
 }

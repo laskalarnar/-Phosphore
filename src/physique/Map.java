@@ -1,7 +1,8 @@
 package physique;
 
+import afficheur.GIA;
 
-public class Map {
+public class Map implements GIA {
 
 	private int mapXX;
 	private int mapYY;
@@ -12,7 +13,7 @@ public class Map {
 		this.mapXX = mapWidth;
 		this.mapYY = mapHeight;
 		this.mapName = mapName;
-		setTileArray(new Tile[mapWidth][mapHeight]);
+		this.tileArray=new Tile[mapWidth][mapHeight];
 
 		// setMinWidth(scale * mapWidth * Tile.TILE_SIZE);
 		// setMinHeight(scale * mapHeight * Tile.TILE_SIZE);
@@ -46,6 +47,7 @@ public class Map {
 		
 		this.mapXX = xcountermax;
 		this.mapYY = ycounter;
+		this.tileArray=new Tile[xcountermax][ycounter ];
 		initialisationMap(code);
 
 		// setMinWidth(scale * mapWidth * Tile.TILE_SIZE);
@@ -85,9 +87,9 @@ public class Map {
 	}
 
 	public void initialisationMap(String code) {
+		
 		for (int x = 0; x < this.getMapXX(); x++) {
 			for (int y = 0; y < this.getMapYY(); y++) {
-
 				char item = code.charAt(y * (this.getMapXX() + 1) + x);
 				this.tileArray[x][y] = new Tile(item);
 
@@ -95,6 +97,40 @@ public class Map {
 			}
 
 		}
+	
+	public String viewToString() {
+		String mapping = new String();
+		System.out.println("On fait la vue sur la map XX="+this.getMapXX()+" et YY="+getMapYY());
+		for (int i = 0; i < this.getMapXX(); i++) {
+			for (int j = 0; j < this.getMapYY(); j++) {
+				if (this.tileArray[i][j].getInteractable() != null) {
+					mapping += "2";
+					continue;
+				}
+				mapping += "1";
+			}
+
+			mapping += "\n";
+		}
+
+		return mapping;
 	}
+
+	public void addPlayer(Player player) {
+		System.out.println("ON A LOCALISE L'IMAGE EN x="+(SIZE*(CX+1))+" et y="+(SIZE*(CY+1)-SIZE/2));
+		this.tileArray[player.getXX()][player.getYY()].setInteractable(player);;
+		player.getActualImage().relocate(480,264);
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void move(Individu ind) {
+		this.tileArray[ind.getXX()][ind.getYY()].setInteractable(null);;
+		ind.mover();
+		this.tileArray[ind.getXX()][ind.getYY()].setInteractable(ind);
+	}
+	}
+
+
 
 

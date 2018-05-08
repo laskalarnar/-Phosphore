@@ -9,7 +9,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
-public class ObjetJeu implements GIA {
+public class ObjectGame implements GIA {
 
 	public ImageSprite img;
 	
