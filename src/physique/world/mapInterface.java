@@ -1,4 +1,4 @@
-package physique;
+package physique.world;
 
 public interface mapInterface {
 

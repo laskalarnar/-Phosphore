@@ -1,4 +1,7 @@
-package physique;
+package physique.character;
+
+import physique.engine.Interactable;
+import physique.sprite.ImageSprite;
 
 public class Individu extends Interactable{
 	

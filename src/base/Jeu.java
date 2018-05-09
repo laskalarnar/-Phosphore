@@ -10,8 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import physique.MoteurPhysique;
-import physique.Player;
+import physique.character.Player;
+import physique.engine.MoteurPhysique;
 import physique.world.World;
 
 public class Jeu implements GIA {

@@ -2,8 +2,6 @@ package physique.world;
 
 import java.util.ArrayList;
 
-import physique.mapInterface;
-
 public class Region implements mapInterface{
 
 	public ArrayList<Map> maps;

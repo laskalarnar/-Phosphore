@@ -1,4 +1,4 @@
-package physique;
+package physique.engine;
 
 public class MoteurPhysique {
 

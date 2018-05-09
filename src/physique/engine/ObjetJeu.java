@@ -1,4 +1,4 @@
-package physique;
+package physique.engine;
 
 import java.net.URL;
 
@@ -8,17 +8,26 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import physique.sprite.ImageSprite;
 
-public class ImageSprite extends ImageView implements GIA {
+public class ObjetJeu implements GIA {
+
+	public ImageSprite img;
 	
-	public ImageSprite(Image image) {
-		super(image);
+	
+	public ImageSprite getActualImage() {
+		return img;
 	}
-	
-	public ImageSprite appealImage(String name) {
+	public void setImg(ImageSprite img) {
+		this.img = img;
+	}
+
+	public ImageSprite appealImage(String access) {
 		URL loc;
-		loc = this.getClass().getResource("pictures/"+name+".png");
-		return new ImageSprite(resample(new Image(loc.toExternalForm()),MULTIPLICATOR));
+		loc = this.getClass().getResource(access);
+		System.out.println("On cherche � afficher l'image du path :"+access) ;
+		Image mamage = new Image(loc.toExternalForm());
+		return new ImageSprite(resample(mamage,MULTIPLICATOR));
 	}
 	
 	public Image resample(Image input, int scaleFactor) {
@@ -41,25 +50,6 @@ public class ImageSprite extends ImageView implements GIA {
 				}
 			}
 		}
-
 		return output;
-	}
-
-	public ImageSprite[][] loadImage(String name) {
-		
-		ImageSprite[][] view = null;
-		
-		view[0][0] = appealImage(name+"0_1");
-		view[1][0] = appealImage(name+"1_1");
-		view[2][0] = appealImage(name+"2_1");
-		view[3][0] = appealImage(name+"3_1");
-		
-		view[0][1] = appealImage(name+"0_1");
-		view[1][1] = appealImage(name+"1_1");
-		view[3][1] = appealImage(name+"2_1");
-		view[3][1] = appealImage(name+"3_1");
-		
-		return view;
-		
 	}
 }

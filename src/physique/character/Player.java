@@ -1,4 +1,4 @@
-package physique;
+package physique.character;
 
 public class Player extends Individu {
 
