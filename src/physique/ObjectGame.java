@@ -1,4 +1,4 @@
-package physique.engine;
+package physique;
 
 import java.net.URL;
 
@@ -8,9 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import physique.sprite.ImageSprite;
 
-public class ObjetJeu implements GIA {
+public class ObjectGame implements GIA {
 
 	public ImageSprite img;
 	
@@ -25,7 +24,7 @@ public class ObjetJeu implements GIA {
 	public ImageSprite appealImage(String access) {
 		URL loc;
 		loc = this.getClass().getResource(access);
-		System.out.println("On cherche ï¿½ afficher l'image du path :"+access) ;
+		System.out.println("On cherche à afficher l'image du path :"+access) ;
 		Image mamage = new Image(loc.toExternalForm());
 		return new ImageSprite(resample(mamage,MULTIPLICATOR));
 	}

@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import afficheur.Afficheur;
 import afficheur.GIA;
+import afficheur.SceneGame;
+import controle.Controle;
+import controle.ControlerKeyBoard;
+import controle.ControlerKeyBoard;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,13 +24,18 @@ public class Jeu implements GIA {
 	protected MoteurPhysique mp;
 	protected Afficheur a;
 	public static Player player;
-	public World world;
+	public static World world;
 	
 	public Jeu(Stage stage) throws IOException {
 		fini = false;
-		mp = new MoteurPhysique();
-		a = new Afficheur();
+		this.world = new World(); 
 		this.player = new Player(0);
+		world.getCurrentMapFromWorld().addPlayer(player);
+		Controle controle = new Controle();
+        ControlerKeyBoard ckb = new ControlerKeyBoard(controle);
+		mp = new MoteurPhysique(this.world, controle);
+		a = new Afficheur(this.world);
+		
 		
 		
 		//Pour avoir la fenetre
@@ -35,7 +44,12 @@ public class Jeu implements GIA {
         loader.setLocation(Principale.class.getResource("/view/frame.fxml"));
         root = (AnchorPane) loader.load();
         
-        Scene scene = new Scene(root,(2*CX+1)*SIZE,(2*CY+1)*SIZE,Color.DARKRED);
+        
+        SceneGame scene = new SceneGame(root,(2*CX+1)*SIZE,(2*CY+1)*SIZE,Color.DARKRED,ckb);
+        root.getChildren().add(a);
+        
+        
+        
 		stage.setScene(scene);
 		stage.show();
 		
@@ -44,12 +58,12 @@ public class Jeu implements GIA {
 	
 	public void update() {
 		// TODO Auto-generated method stub
-		mp.update();
-	}
+		this.mp.update();
+	} 
 
-	public void render() {
+	public void rendering() throws InterruptedException {
 		// TODO Auto-generated method stub
-		a.render();
+		this.a.render();
 	}
 
 

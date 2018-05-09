@@ -11,8 +11,13 @@ import javafx.scene.image.WritableImage;
 
 public class ImageSprite extends ImageView implements GIA {
 	
+	protected int shiftX;
+	protected int shiftY;
+	
 	public ImageSprite(Image image) {
 		super(image);
+		this.shiftX=0;
+		this.shiftY=0;
 	}
 	
 	public ImageSprite appealImage(String name) {
@@ -44,15 +49,15 @@ public class ImageSprite extends ImageView implements GIA {
 
 		return output;
 	}
-
+/*
 	public ImageSprite[][] loadImage(String name) {
-		
+
 		ImageSprite[][] view = null;
 		
-		view[0][0] = appealImage(name+"0_1");
-		view[1][0] = appealImage(name+"1_1");
-		view[2][0] = appealImage(name+"2_1");
-		view[3][0] = appealImage(name+"3_1");
+		view[0][0] = appealImage(name+"0_0");
+		view[1][0] = appealImage(name+"1_0");
+		view[2][0] = appealImage(name+"2_0");
+		view[3][0] = appealImage(name+"3_0");
 		
 		view[0][1] = appealImage(name+"0_1");
 		view[1][1] = appealImage(name+"1_1");
@@ -62,4 +67,27 @@ public class ImageSprite extends ImageView implements GIA {
 		return view;
 		
 	}
+	*/
+	public void evolve(int SX,int SY) {
+		this.shiftX +=SX;
+		this.shiftY +=SY;
+	}
+
+	public int getShiftX() {
+		return shiftX;
+	}
+
+	public void setShiftX(int shiftX) {
+		this.shiftX = shiftX;
+	}
+
+	public int getShiftY() {
+		return shiftY;
+	}
+
+	public void setShiftY(int shiftY) {
+		this.shiftY = shiftY;
+	}
+	
+	
 }

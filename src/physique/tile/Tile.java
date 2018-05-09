@@ -2,13 +2,15 @@ package physique.tile;
 
 import java.net.URL;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import physique.ObjectGame;
 import physique.engine.Interactable;
 import physique.engine.ObjetJeu;
 import physique.sprite.ImageSprite;
 
-public class Tile extends ObjetJeu{
+public class Tile extends ObjectGame{
 	//private static final long serialVersionUID = -652661369913332480L;
 	protected Interactable interactable;
 	protected boolean walkable;
@@ -59,6 +61,6 @@ public class Tile extends ObjetJeu{
 	public void setWalkable(boolean walkable) {
 		this.walkable = walkable;
 	}
-	
+
 	
 }
