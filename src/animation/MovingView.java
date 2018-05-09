@@ -2,7 +2,7 @@ package animation;
 
 import physique.sprite.ImageSprite;
 import physique.character.Individu;
-import physique.ObjectGame;
+import physique.engine.ObjectGame;
 
 public class MovingView extends Motion {
 
