@@ -1,9 +1,12 @@
-package physique;
+package physique.tile;
 
 import java.net.URL;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import physique.ImageSprite;
+import physique.Interactable;
+import physique.ObjetJeu;
 
 public class Tile extends ObjetJeu{
 	//private static final long serialVersionUID = -652661369913332480L;

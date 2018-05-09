@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import physique.MoteurPhysique;
 import physique.Player;
-import physique.World;
+import physique.world.World;
 
 public class Jeu implements GIA {
 

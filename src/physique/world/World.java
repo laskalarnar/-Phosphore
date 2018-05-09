@@ -1,4 +1,4 @@
-package physique;
+package physique.world;
 
 import java.util.ArrayList;
 

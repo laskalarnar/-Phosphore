@@ -1,5 +1,6 @@
-package physique;
+package physique.world;
 
+import physique.tile.Tile;
 
 public class Map {
 

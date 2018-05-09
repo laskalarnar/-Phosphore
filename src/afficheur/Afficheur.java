@@ -2,9 +2,9 @@ package afficheur;
 
 import base.Jeu;
 import javafx.scene.layout.AnchorPane;
-import physique.Map;
-import physique.Tile;
-import physique.World;
+import physique.tile.Tile;
+import physique.world.Map;
+import physique.world.World;
 
 public class Afficheur extends AnchorPane implements GIA{
 
@@ -29,7 +29,7 @@ public class Afficheur extends AnchorPane implements GIA{
 					this.getChildren().addAll(til.getActualImage());
 
 					if (til.getInteractable() != null) {
-						System.out.println("On fait un personnage là en x = " + j + "  ———  y = " + i + "  ———  "
+						System.out.println("On fait un personnage lï¿½ en x = " + j + "  ï¿½ï¿½ï¿½  y = " + i + "  ï¿½ï¿½ï¿½  "
 								+ til.toString());
 						this.getChildren().addAll(til.getInteractable().getActualImage());
 					}
