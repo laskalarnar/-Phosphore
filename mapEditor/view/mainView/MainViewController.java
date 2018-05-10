@@ -8,6 +8,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import physique.sprite.Spritesheet;
 import view.toolbars.ColumnToolBarController;
 import view.toolbars.RowToolBarController;
 
@@ -26,8 +27,8 @@ public class MainViewController {
 
 	@FXML
 	private void initialize() {
-		// setToolBars();
-
+		setToolBars();
+		setTileList();
 	}
 
 	public void setToolBars() {
@@ -54,9 +55,10 @@ public class MainViewController {
 			e.printStackTrace();
 		}
 	}
-
-
-	public void setUnsaved(boolean unsaved) {
-		this.unsaved = unsaved;
+	
+	public void setTileList() {
+		Spritesheet s = new Spritesheet("Zelda_Overworld");
+		s.loadImage();
+		
 	}
 }

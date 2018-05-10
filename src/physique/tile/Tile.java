@@ -5,16 +5,24 @@ import java.net.URL;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Pair;
 import physique.engine.Interactable;
 import physique.engine.ObjectGame;
 import physique.sprite.ImageSprite;
+import physique.sprite.Spritesheet;
 
 public class Tile extends ObjectGame{
 	//private static final long serialVersionUID = -652661369913332480L;
 	protected Interactable interactable;
 	protected boolean walkable;
 	
+	private Spritesheet spritesheet;
+	private Pair<Integer, Integer> spritesheetCoordinates;
 	
+	public Tile(Spritesheet spritesheet, int x, int y) {
+		this.spritesheet = spritesheet;
+		spritesheetCoordinates = new Pair<>(x, y);
+	}
 	
 	public Tile(ImageView floor, Interactable interactable, boolean walkable) {
 		super();

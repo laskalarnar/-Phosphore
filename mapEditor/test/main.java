@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 import org.apache.derby.jdbc.EmbeddedDriver;
 
-import database.test;
+import database.DatabaseConnection;
 
 public class main {
 
@@ -23,8 +23,7 @@ public class main {
 
 	public static void create() {
 		try {
-			test.createDatabase();
-			test.createDatabaseConnection();
+			DatabaseConnection.createDatabaseConnection();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +45,7 @@ public class main {
 			Driver derbyEmbeddedDriver = new EmbeddedDriver();
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
-				conn = test.createDatabaseConnection();
+				conn = DatabaseConnection.createDatabaseConnection();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -81,7 +80,7 @@ public class main {
 			Driver derbyEmbeddedDriver = new EmbeddedDriver();
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
-				conn = test.createDatabaseConnection();
+				conn = DatabaseConnection.createDatabaseConnection();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -123,7 +122,7 @@ public class main {
 			Driver derbyEmbeddedDriver = new EmbeddedDriver();
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
-				conn = test.createDatabaseConnection();
+				conn = DatabaseConnection.createDatabaseConnection();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -163,7 +162,7 @@ public class main {
 			Driver derbyEmbeddedDriver = new EmbeddedDriver();
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
-				conn = test.createDatabaseConnection();
+				conn = DatabaseConnection.createDatabaseConnection();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -204,7 +203,7 @@ public class main {
 			Driver derbyEmbeddedDriver = new EmbeddedDriver();
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
-				conn = test.createDatabaseConnection();
+				conn = DatabaseConnection.createDatabaseConnection();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
