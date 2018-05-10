@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
-Wed May 09 22:37:45 CEST 2018:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579) : instance a816c00e-0163-469f-c403-000006b660e8 
-dans le répertoire de base de données /home/breugnot/Development/Java/workspace/Phosphore/gamedb avec le chargeur de classe sun.misc.Launcher$AppClassLoader@4d7e1886
-Chargé de file:/opt/Apache/db-derby-10.14.2.0-bin/lib/derby.jar
+Thu May 10 17:09:25 CEST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0163-4a99-876a-000006a43bf0 
+on database directory /home/breugnot/Development/Java/workspace/Phosphore/gamedb with class loader sun.misc.Launcher$AppClassLoader@7d4991ad 
+Loaded from file:/home/breugnot/Development/Java/workspace/Phosphore/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_141-8u141-b15-3-b15
 user.dir=/home/breugnot/Development/Java/workspace/Phosphore
@@ -10,10 +10,10 @@ os.name=Linux
 os.arch=amd64
 os.version=4.14.0-deepin2-amd64
 derby.system.home=null
-Chargeur de classe de la base de données démarré - derby.database.classpath = ''
+Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Wed May 09 22:39:14 CEST 2018 : fermeture du moteur Derby
+Thu May 10 17:09:26 CEST 2018: Shutting down Derby engine
 ----------------------------------------------------------------
-Wed May 09 22:39:14 CEST 2018:
-Fermeture de l'instance a816c00e-0163-469f-c403-000006b660e8 sur le répertoire de base de données /home/breugnot/Development/Java/workspace/Phosphore/gamedb avec le chargeur de classe sun.misc.Launcher$AppClassLoader@4d7e1886 
+Thu May 10 17:09:26 CEST 2018:
+Shutting down instance a816c00e-0163-4a99-876a-000006a43bf0 on database directory /home/breugnot/Development/Java/workspace/Phosphore/gamedb with class loader sun.misc.Launcher$AppClassLoader@7d4991ad 
 ----------------------------------------------------------------

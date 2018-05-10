@@ -1,14 +1,21 @@
 package view.mainView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import database.SpritesheetsLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import physique.sprite.Spritesheet;
+import physique.tile.Tile;
 import view.toolbars.ColumnToolBarController;
 import view.toolbars.RowToolBarController;
 
@@ -24,6 +31,9 @@ public class MainViewController {
 	private BorderPane MapBorderPane;
 	@FXML
 	private Slider zoomSlider;
+	
+	private ArrayList<Spritesheet> SpritesheetsList = new ArrayList<>();
+	private HashMap<Spritesheet, ArrayList<Tile>> tileSets = new HashMap<>();
 
 	@FXML
 	private void initialize() {
@@ -57,8 +67,18 @@ public class MainViewController {
 	}
 	
 	public void setTileList() {
-		Spritesheet s = new Spritesheet("Zelda_Overworld");
-		s.loadImage();
-		
+		SpritesheetsList = SpritesheetsLoader.loadSpritesheets();
+		for(Spritesheet ss : SpritesheetsList) {
+			ss.loadImage();
+			ss.parseSpritesheet();
+		}
+		/*Stage test = new Stage();
+		AnchorPane a = new AnchorPane();
+		SpritesheetsList.get(0).loadImage();
+		ImageView img = new ImageView(SpritesheetsList.get(0).getImage());
+		a.getChildren().add(img);
+		Scene sc = new Scene(a);
+		test.setScene(sc);
+		test.show();*/
 	}
 }
