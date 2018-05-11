@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import database.maps.MapDB;
+import database.maps.MapsLoader;
 import database.simpleTiles.SimpleTileDB;
 import database.simpleTiles.SimpleTilesLoader;
 import database.spritesheets.SpritesheetDB;
 import database.spritesheets.SpritesheetsLoader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
@@ -23,10 +29,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Pair;
 import physique.sprite.Spritesheet;
 import physique.tile.SimpleTile;
 import physique.world.Map;
+import view.mainView.MainViewController.MapCell;
 import view.map.newMap.NewMapController;
 import view.toolbars.ColumnToolBarController;
 import view.toolbars.RowToolBarController;
@@ -46,14 +54,20 @@ public class MainViewController {
 	private Slider zoomSlider;
 	@FXML
 	private VBox Tiles;
+	@FXML
+	private ListView<MapDB> Maps;
 
 	private ArrayList<SpritesheetDB> SpritesheetsList = new ArrayList<>();
 	private HashMap<Spritesheet, ArrayList<SimpleTile>> tileSets = new HashMap<>();
+	
+	ArrayList<MapDB> MapsArrayList = new ArrayList<>();
+	public ObservableList<MapDB> MapsList = FXCollections.observableArrayList(MapsArrayList);
 
 	@FXML
 	private void initialize() {
 		setToolBars();
 		setTileList();
+		setMapList();
 	}
 
 	private void setToolBars() {
@@ -105,6 +119,19 @@ public class MainViewController {
 			VBox.setMargin(sep, new Insets(5, 10, 0, 0));
 			Tiles.getChildren().add(sep);
 		}
+	}
+	
+	private void setMapList() {
+
+		Maps.setItems(MapsList);
+		MapsList.addAll(MapsLoader.loadMaps());
+
+		Maps.setCellFactory(new Callback<ListView<MapDB>, ListCell<MapDB>>() {
+			@Override
+			public ListCell<MapDB> call(ListView<MapDB> Maps) {
+				return new MapCell();
+			}
+		});
 	}
 
 	private void setUpTileCell(TileCell tile) {
@@ -170,6 +197,16 @@ public class MainViewController {
 
 		public void unSelect() {
 			getChildren().remove(selected);
+		}
+	}
+	
+	public static class MapCell extends ListCell<MapDB> {
+		@Override
+		public void updateItem(MapDB item, boolean empty) {
+			super.updateItem(item, empty);
+			if (item != null) {
+				setText(item.getMap().getMapName());
+			}
 		}
 	}
 }
