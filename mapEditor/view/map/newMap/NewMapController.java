@@ -1,8 +1,10 @@
 package view.map.newMap;
 
+import database.maps.MapsLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import physique.world.Map;
 import view.mainView.MainViewController;
 
 public class NewMapController {
@@ -27,7 +29,10 @@ public class NewMapController {
 
 	@FXML
 	private void addMap() {
-		
+		Map map = new Map(Integer.parseInt(widthField.getText()), Integer.parseInt(heightField.getText()),
+				nameField.getText());
+		MapsLoader.addMap(map);
+		stage.close();
 	}
 
 }
