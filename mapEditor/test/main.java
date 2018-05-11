@@ -30,6 +30,9 @@ public class main {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -46,7 +49,7 @@ public class main {
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
 				conn = DatabaseConnection.createDatabaseConnection();
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -81,7 +84,7 @@ public class main {
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
 				conn = DatabaseConnection.createDatabaseConnection();
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -123,7 +126,7 @@ public class main {
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
 				conn = DatabaseConnection.createDatabaseConnection();
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -163,7 +166,7 @@ public class main {
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
 				conn = DatabaseConnection.createDatabaseConnection();
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -204,7 +207,7 @@ public class main {
 			DriverManager.registerDriver(derbyEmbeddedDriver);
 			try {
 				conn = DatabaseConnection.createDatabaseConnection();
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

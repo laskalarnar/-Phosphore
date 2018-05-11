@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import database.simpleTiles.SimpleTileDB;
+import database.simpleTiles.SimpleTilesLoader;
+import database.spritesheets.SpritesheetDB;
 import database.spritesheets.SpritesheetsLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +50,7 @@ public class MainViewController {
 	@FXML
 	private VBox Tiles;
 
-	private ArrayList<Spritesheet> SpritesheetsList = new ArrayList<>();
+	private ArrayList<SpritesheetDB> SpritesheetsList = new ArrayList<>();
 	private HashMap<Spritesheet, ArrayList<SimpleTile>> tileSets = new HashMap<>();
 
 	@FXML
@@ -82,23 +85,23 @@ public class MainViewController {
 	}
 
 	private void setTileList() {
+		SimpleTilesLoader.updateSimpleTilesTable();
 		SpritesheetsList = SpritesheetsLoader.loadSpritesheets();
-		for (Spritesheet ss : SpritesheetsList) {
-			ss.loadImage();
-			ss.parseSpritesheet();
-			HashMap<Pair<Integer, Integer>, Image> tileSet = ss.getTileSet();
+		for (SpritesheetDB ss : SpritesheetsList) {
+			ArrayList<SimpleTileDB> tileSet = SimpleTilesLoader.loadTileSet(ss.getSpritesheet());
 			AnchorPane anchorPane = new AnchorPane();
 			int i = 0;
-			for (Pair<Integer, Integer> coordinates : tileSet.keySet()) {
-				TileCell tileCell = new TileCell(new SimpleTile(ss, coordinates));
+			for (SimpleTileDB tile : tileSet) {
+				Pair<Integer, Integer> coordinates = tile.getSimpleTile().getSpritesheetCoordinates();
+				TileCell tileCell = new TileCell(tile);
 				setUpTileCell(tileCell);
-				tileCell.getChildren().add(new ImageView(tileSet.get(coordinates)));
+				tileCell.getChildren().add(new ImageView(ss.getSpritesheet().getTile(coordinates)));
 				anchorPane.getChildren().add(tileCell);
 				AnchorPane.setTopAnchor(tileCell, (double) Math.floorDiv(i, 12) * 17);
 				AnchorPane.setLeftAnchor(tileCell, (double) (i % 12) * 17);
 				i++;
 			}
-			Tiles.getChildren().add(new Label(ss.getName()));
+			Tiles.getChildren().add(new Label(ss.getSpritesheet().getName()));
 			Tiles.getChildren().add(new Separator());
 			Tiles.getChildren().add(anchorPane);
 			Separator sep = new Separator();
@@ -118,10 +121,10 @@ public class MainViewController {
 	}
 
 	private class TileCell extends AnchorPane {
-		private SimpleTile tile;
+		private SimpleTileDB tile;
 		private Rectangle selected = new Rectangle(18, 18, Color.BLUE);
 
-		public TileCell(SimpleTile tile) {
+		public TileCell(SimpleTileDB tile) {
 			this.tile = tile;
 			Color c = new Color(0, 0, 1, 0.2);
 			selected.setFill(c);

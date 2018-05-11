@@ -1,33 +1,21 @@
 package physique.sprite;
 
-import java.io.ByteArrayInputStream;
-import java.net.URL;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelFormat;
-import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
-import javafx.scene.image.WritablePixelFormat;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
 import javafx.util.Pair;
-import physique.tile.SimpleTile;
 
 public class Spritesheet {
 
 	private String name;
 	private Image image;
-	private HashMap<Pair<Integer, Integer>, Image> TileSet = new HashMap();
+	private HashMap<Pair<Integer, Integer>, Image> TileSet = new HashMap<>();
 	
 	public Spritesheet(String name) {
 		this.name = name;
+		loadImage();
+		parse();
 	}
 
 	public String getName() {
@@ -46,11 +34,11 @@ public class Spritesheet {
 		return TileSet;
 	}
 	
-	public void loadImage() {
+	private void loadImage() {
 		image = new Image("file:ressources/spritesheets/"+name+".png");
 	}
 	
-	public void parseSpritesheet(){
+	private void parse(){
 		int width = (int) Math.floorDiv((int) image.getWidth(), 17);
 		int height = (int) Math.floorDiv((int) image.getHeight(), 17);
 		
@@ -61,4 +49,35 @@ public class Spritesheet {
 			}
 		}
 	}
+	
+	public Image getTile(Pair<Integer, Integer> coordinates) {
+		return TileSet.get(coordinates);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Spritesheet other = (Spritesheet) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
+	
 }

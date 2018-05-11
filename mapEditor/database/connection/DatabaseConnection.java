@@ -10,9 +10,14 @@ public class DatabaseConnection {
 	 * connects to the database using the connection URL.
 	 */
 
-	public static Connection createDatabaseConnection() throws SQLException, ClassNotFoundException {
+	public static Connection createDatabaseConnection() throws SQLException, IllegalAccessException, ClassNotFoundException {
 		String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-		Class.forName(driver);
+		try {
+			Class.forName(driver).newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String url = "jdbc:derby:gamedb";
 		Connection c = DriverManager.getConnection(url);
 		return c;

@@ -34,7 +34,7 @@ public class Launch extends Application {
 
 	@Override
 	public void stop() {
-		DatabaseConnection.closeConnection();
+		//DatabaseConnection.closeConnection();
 	}
 
 	public static void main(String[] args) {

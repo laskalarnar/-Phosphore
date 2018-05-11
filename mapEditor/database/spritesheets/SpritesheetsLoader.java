@@ -11,8 +11,8 @@ import physique.sprite.Spritesheet;
 
 public abstract class SpritesheetsLoader {
 
-	public static ArrayList<Spritesheet> loadSpritesheets() {
-		ArrayList<Spritesheet> spritesheets = new ArrayList<>();
+	public static ArrayList<SpritesheetDB> loadSpritesheets() {
+		ArrayList<SpritesheetDB> spritesheets = new ArrayList<>();
 		
 		Connection conn;
 		Statement stmt;
@@ -21,11 +21,12 @@ public abstract class SpritesheetsLoader {
 			conn = DatabaseConnection.createDatabaseConnection();
 			
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT NAME FROM Spritesheets");
+			rs = stmt.executeQuery("SELECT * FROM Spritesheets");
 			while (rs.next()) {
-				spritesheets.add(new Spritesheet(rs.getString(1)));
+				Spritesheet ss = new Spritesheet(rs.getString("NAME"));
+				spritesheets.add(new SpritesheetDB(rs.getInt("ID_SPRITESHEET"), ss));
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 
