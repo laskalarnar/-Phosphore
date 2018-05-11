@@ -2,7 +2,7 @@ package main;
 
 import java.sql.SQLException;
 
-import database.DatabaseConnection;
+import database.connection.DatabaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

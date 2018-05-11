@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import base.Jeu;
 import javafx.scene.layout.AnchorPane;
 import physique.sprite.ImageSprite;
-import physique.tile.Tile;
+import physique.tile.SimpleTile;
 import physique.world.Map;
 import physique.world.World;
 
@@ -38,7 +38,7 @@ public class Afficheur extends AnchorPane implements GIA{
 				if (0<=i && i<map.getMapXX() && 0<=j && j<map.getMapYY() ) {
 					
 
-					Tile til = map.getTileArray()[i][j];
+					SimpleTile til = map.getTileArray()[i][j];
 					til.getActualImage().relocate(SIZE*(i+CX-CenXX)-im.getShiftX(),SIZE*(j+CY-CenYY)-im.getShiftY());
 					this.getChildren().addAll(til.getActualImage());
 					/*
@@ -65,7 +65,7 @@ public class Afficheur extends AnchorPane implements GIA{
 
 			 for (int i = CenXX-CX; i <= CenXX+CX; i++) {
 				 if (0<=i && i<map.getMapXX() && 0<=j && j<map.getMapYY() ) {
-				 Tile til = map.getTileArray()[i][j];
+				 SimpleTile til = map.getTileArray()[i][j];
 					if (til.getInteractable() != null) {
 						
 						ImageSprite img =til.getInteractable().getActualImage();

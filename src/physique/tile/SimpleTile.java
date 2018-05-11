@@ -11,7 +11,7 @@ import physique.engine.ObjectGame;
 import physique.sprite.ImageSprite;
 import physique.sprite.Spritesheet;
 
-public class Tile extends ObjectGame{
+public class SimpleTile extends ObjectGame{
 	//private static final long serialVersionUID = -652661369913332480L;
 	protected Interactable interactable;
 	protected boolean walkable;
@@ -19,18 +19,18 @@ public class Tile extends ObjectGame{
 	private Spritesheet spritesheet;
 	private Pair<Integer, Integer> spritesheetCoordinates;
 	
-	public Tile(Spritesheet spritesheet, Pair<Integer, Integer> coordinates) {
+	public SimpleTile(Spritesheet spritesheet, Pair<Integer, Integer> coordinates) {
 		this.spritesheet = spritesheet;
 		this.spritesheetCoordinates = spritesheetCoordinates;
 	}
 	
-	public Tile(ImageView floor, Interactable interactable, boolean walkable) {
+	public SimpleTile(ImageView floor, Interactable interactable, boolean walkable) {
 		super();
 		this.interactable = interactable;
 		this.walkable = walkable;
 	}
 	
-	public Tile(char chary) {
+	public SimpleTile(char chary) {
 		super();
 		this.interactable = null;
 		this.walkable = true;

@@ -1,4 +1,4 @@
-package database;
+package database.spritesheets;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import database.connection.DatabaseConnection;
 import physique.sprite.Spritesheet;
 
 public abstract class SpritesheetsLoader {

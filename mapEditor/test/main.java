@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 import org.apache.derby.jdbc.EmbeddedDriver;
 
-import database.DatabaseConnection;
+import database.connection.DatabaseConnection;
 
 public class main {
 

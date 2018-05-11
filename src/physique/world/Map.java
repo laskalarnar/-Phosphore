@@ -3,20 +3,20 @@ package physique.world;
 import afficheur.GIA;
 import physique.character.Individu;
 import physique.character.Player;
-import physique.tile.Tile;
+import physique.tile.SimpleTile;
 
 public class Map implements GIA {
 
 	private int mapXX;
 	private int mapYY;
 	private String mapName;
-	private Tile tileArray[][];
+	private SimpleTile tileArray[][];
 	
 	public Map(int mapWidth, int mapHeight, String mapName) {
 		this.mapXX = mapWidth;
 		this.mapYY = mapHeight;
 		this.mapName = mapName;
-		this.tileArray=new Tile[mapWidth][mapHeight];
+		this.tileArray=new SimpleTile[mapWidth][mapHeight];
 
 		// setMinWidth(scale * mapWidth * Tile.TILE_SIZE);
 		// setMinHeight(scale * mapHeight * Tile.TILE_SIZE);
@@ -50,18 +50,18 @@ public class Map implements GIA {
 		
 		this.mapXX = xcountermax;
 		this.mapYY = ycounter;
-		this.tileArray=new Tile[xcountermax][ycounter ];
+		this.tileArray=new SimpleTile[xcountermax][ycounter ];
 		initialisationMap(code);
 
 		// setMinWidth(scale * mapWidth * Tile.TILE_SIZE);
 		// setMinHeight(scale * mapHeight * Tile.TILE_SIZE);
 	}
 
-	public Tile[][] getTileArray() {
+	public SimpleTile[][] getTileArray() {
 		return tileArray;
 	}
 
-	public void setTileArray(Tile tileArray[][]) {
+	public void setTileArray(SimpleTile tileArray[][]) {
 		this.tileArray = tileArray;
 	}
 	
@@ -94,7 +94,7 @@ public class Map implements GIA {
 		for (int x = 0; x < this.getMapXX(); x++) {
 			for (int y = 0; y < this.getMapYY(); y++) {
 				char item = code.charAt(y * (this.getMapXX() + 1) + x);
-				this.tileArray[x][y] = new Tile(item);
+				this.tileArray[x][y] = new SimpleTile(item);
 
 				}
 			}

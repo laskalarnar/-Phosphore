@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import database.SpritesheetsLoader;
+import database.spritesheets.SpritesheetsLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -27,7 +27,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import physique.sprite.Spritesheet;
-import physique.tile.Tile;
+import physique.tile.SimpleTile;
 import view.toolbars.ColumnToolBarController;
 import view.toolbars.RowToolBarController;
 
@@ -48,7 +48,7 @@ public class MainViewController {
 	private VBox Tiles;
 
 	private ArrayList<Spritesheet> SpritesheetsList = new ArrayList<>();
-	private HashMap<Spritesheet, ArrayList<Tile>> tileSets = new HashMap<>();
+	private HashMap<Spritesheet, ArrayList<SimpleTile>> tileSets = new HashMap<>();
 
 	@FXML
 	private void initialize() {
@@ -90,7 +90,7 @@ public class MainViewController {
 			AnchorPane anchorPane = new AnchorPane();
 			int i = 0;
 			for (Pair<Integer, Integer> coordinates : tileSet.keySet()) {
-				TileCell tileCell = new TileCell(new Tile(ss, coordinates));
+				TileCell tileCell = new TileCell(new SimpleTile(ss, coordinates));
 				setUpTileCell(tileCell);
 				tileCell.getChildren().add(new ImageView(tileSet.get(coordinates)));
 				anchorPane.getChildren().add(tileCell);
@@ -118,10 +118,10 @@ public class MainViewController {
 	}
 
 	private class TileCell extends AnchorPane {
-		private Tile tile;
+		private SimpleTile tile;
 		private Rectangle selected = new Rectangle(18, 18, Color.BLUE);
 
-		public TileCell(Tile tile) {
+		public TileCell(SimpleTile tile) {
 			this.tile = tile;
 			Color c = new Color(0, 0, 1, 0.2);
 			selected.setFill(c);

@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
-import physique.tile.Tile;
+import physique.tile.SimpleTile;
 
 public class Spritesheet {
 
