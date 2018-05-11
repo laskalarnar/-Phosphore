@@ -23,7 +23,7 @@ public abstract class SpritesheetsLoader {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Spritesheets");
 			while (rs.next()) {
-				Spritesheet ss = new Spritesheet(rs.getString("NAME"));
+				Spritesheet ss = new Spritesheet(rs.getString("SPRITESHEET_NAME"));
 				spritesheets.add(new SpritesheetDB(rs.getInt("ID_SPRITESHEET"), ss));
 			}
 		} catch (ClassNotFoundException | SQLException | IllegalAccessException e) {

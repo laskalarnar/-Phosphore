@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.connection.DatabaseConnection;
+import javafx.util.Pair;
+import physique.sprite.Spritesheet;
+import physique.tile.SimpleTile;
 import physique.world.Map;
 
 public abstract class MapsLoader {
@@ -32,7 +35,45 @@ public abstract class MapsLoader {
 		}
 
 		DatabaseConnection.closeConnection();
+		for(MapDB map : maps) {
+			loadTiles(map);
+		}
 		return maps;
+	}
+	
+	private static void loadTiles(MapDB map) {
+		Connection conn;
+		Statement stmt;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseConnection.createDatabaseConnection();
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(
+					"SELECT * FROM SIMPLE_TILES "
+					+ "INNER JOIN SPRITESHEETS "
+					+ "ON SIMPLE_TILES.ID_SPRITESHEET"
+					+ "=SPRITESHEETS.ID_SPRITESHEET "
+					+ "INNER JOIN LINK_MAPS_SIMPLE_TILES "
+					+ "ON SIMPLE_TILES.ID_SIMPLE_TILE"
+					+ "=LINK_MAPS_SIMPLE_TILES.ID_SIMPLE_TILE "
+					+ "WHERE ID_MAP = " + map.getID());
+			SimpleTile[][] tileArray =
+					new SimpleTile[map.getMap().getMapXX()][map.getMap().getMapYY()];
+			while (rs.next()) {
+				Spritesheet ss = new Spritesheet(rs.getString("SPRITESHEET_NAME"));
+				SimpleTile tile = new SimpleTile(
+						ss,
+						new Pair<Integer, Integer>(rs.getInt("X_SPRITE"), rs.getInt("Y_SPRITE")));
+				tileArray[rs.getInt("X")][rs.getInt("Y")] = tile;
+			}
+			map.getMap().setTileArray(tileArray);
+		} catch (ClassNotFoundException | SQLException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
+		DatabaseConnection.closeConnection();
+
 	}
 	
 	public static void addMap(Map map) {

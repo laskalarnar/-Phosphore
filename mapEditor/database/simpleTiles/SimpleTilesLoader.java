@@ -37,7 +37,7 @@ public abstract class SimpleTilesLoader {
 					SimpleTile check = new SimpleTile(ss.getSpritesheet(), coordinates);
 					if (!simpleTiles.contains(check)) {
 						pstmt = conn.prepareStatement(
-								"insert into SIMPLE_TILES " + "(ID_SPRITESHEET, X_SPRITE, Y_SPRITE) values (?, ?, ?)");
+								"insert into SIMPLE_TILES (ID_SPRITESHEET, X_SPRITE, Y_SPRITE) values (?, ?, ?)");
 						pstmt.setInt(1, ss.getID_Spritesheet());
 						pstmt.setInt(2, coordinates.getKey());
 						pstmt.setInt(3, coordinates.getValue());
@@ -65,7 +65,7 @@ public abstract class SimpleTilesLoader {
 
 			stmt = conn.createStatement();
 			String selectQuery = "SELECT * FROM SIMPLE_TILES INNER JOIN SPRITESHEETS "
-					+ "ON SIMPLE_TILES.ID_SPRITESHEET = SPRITESHEETS.ID_SPRITESHEET " + "WHERE SPRITESHEETS.NAME = '"
+					+ "ON SIMPLE_TILES.ID_SPRITESHEET = SPRITESHEETS.ID_SPRITESHEET " + "WHERE SPRITESHEET_NAME = '"
 					+ ss.getName() + "'";
 			rs = stmt.executeQuery(selectQuery);
 			while (rs.next()) {
@@ -96,7 +96,7 @@ public abstract class SimpleTilesLoader {
 					+ "ON SIMPLE_TILES.ID_SPRITESHEET = SPRITESHEETS.ID_SPRITESHEET";
 			rs = stmt.executeQuery(selectQuery);
 			while (rs.next()) {
-				Spritesheet ss = new Spritesheet(rs.getString("NAME"));
+				Spritesheet ss = new Spritesheet(rs.getString("SPRITESHEET_NAME"));
 				SimpleTile simpleTile = new SimpleTile(ss,
 						new Pair<Integer, Integer>(rs.getInt("X_SPRITE"), rs.getInt("Y_SPRITE")));
 				SimpleTileDB stDB = new SimpleTileDB(rs.getInt("ID_SIMPLE_TILE"), simpleTile);

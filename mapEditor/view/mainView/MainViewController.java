@@ -10,15 +10,19 @@ import database.simpleTiles.SimpleTileDB;
 import database.simpleTiles.SimpleTilesLoader;
 import database.spritesheets.SpritesheetDB;
 import database.spritesheets.SpritesheetsLoader;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
@@ -59,7 +63,7 @@ public class MainViewController {
 
 	private ArrayList<SpritesheetDB> SpritesheetsList = new ArrayList<>();
 	private HashMap<Spritesheet, ArrayList<SimpleTile>> tileSets = new HashMap<>();
-	
+
 	ArrayList<MapDB> MapsArrayList = new ArrayList<>();
 	public ObservableList<MapDB> MapsList = FXCollections.observableArrayList(MapsArrayList);
 
@@ -68,6 +72,7 @@ public class MainViewController {
 		setToolBars();
 		setTileList();
 		setMapList();
+		setContentStackPane();
 	}
 
 	private void setToolBars() {
@@ -120,7 +125,7 @@ public class MainViewController {
 			Tiles.getChildren().add(sep);
 		}
 	}
-	
+
 	private void setMapList() {
 
 		Maps.setItems(MapsList);
@@ -132,6 +137,21 @@ public class MainViewController {
 				return new MapCell();
 			}
 		});
+
+		Maps.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MapDB>() {
+			public void changed(ObservableValue<? extends MapDB> observable, MapDB oldValue, MapDB newValue) {
+				displayMap(newValue.getMap());
+			}
+		});
+	}
+
+	private void setContentStackPane() {
+		contentStackPane = new StackPane();
+		((ScrollPane) MapBorderPane.getCenter()).heightProperty()
+				.addListener((obs, oldVal, newVal) -> contentStackPane.setMinHeight((double) newVal));
+		((ScrollPane) MapBorderPane.getCenter()).widthProperty()
+				.addListener((obs, oldVal, newVal) -> contentStackPane.setMinWidth((double) newVal));
+		((ScrollPane) MapBorderPane.getCenter()).setContent(contentStackPane);
 	}
 
 	private void setUpTileCell(TileCell tile) {
@@ -143,21 +163,25 @@ public class MainViewController {
 			selectedTileCell.select();
 		});
 	}
-	
+
 	private void displayMap(Map map) {
 		AnchorPane mapAnchorPane = new AnchorPane();
-		for(int x = 0; x < map.getMapXX(); x++) {
-			for(int y = 0; y < map.getMapYY(); y++) {
+		for (int x = 0; x < map.getMapXX(); x++) {
+			for (int y = 0; y < map.getMapYY(); y++) {
 				SimpleTile tile = map.getTileArray()[x][y];
-				ImageView img = new ImageView(tile.getSpritesheet().getTile(tile.getSpritesheetCoordinates()));
-				mapAnchorPane.getChildren().add(img);
-				AnchorPane.setTopAnchor(img, (double) x*16);
-				AnchorPane.setLeftAnchor(img, (double) y*16);
+				if (tile != null) {
+					ImageView img = new ImageView(tile.getSpritesheet().getTile(tile.getSpritesheetCoordinates()));
+					mapAnchorPane.getChildren().add(img);
+					AnchorPane.setTopAnchor(img, (double) x * 16);
+					AnchorPane.setLeftAnchor(img, (double) y * 16);
+				}
 			}
 		}
-		MapBorderPane.setCenter(mapAnchorPane);
+		mapAnchorPane.setMaxWidth(map.getMapXX() * 16);
+		mapAnchorPane.setMaxHeight(map.getMapYY() * 16);
+		contentStackPane.getChildren().add(mapAnchorPane);
 	}
-	
+
 	@FXML
 	private void handleNewMap() {
 		try {
@@ -199,7 +223,7 @@ public class MainViewController {
 			getChildren().remove(selected);
 		}
 	}
-	
+
 	public static class MapCell extends ListCell<MapDB> {
 		@Override
 		public void updateItem(MapDB item, boolean empty) {

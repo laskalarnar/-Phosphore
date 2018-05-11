@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri May 11 17:56:48 CEST 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0163-4feb-4208-000012e4b470 
+Fri May 11 20:52:23 CEST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0163-508c-0248-00001420abe8 
 on database directory /home/breugnot/Development/Java/workspace/Phosphore/gamedb with class loader sun.misc.Launcher$AppClassLoader@7d4991ad 
 Loaded from file:/home/breugnot/Development/Java/workspace/Phosphore/derby.jar
 java.vendor=Oracle Corporation
@@ -12,8 +12,8 @@ os.version=4.14.0-deepin2-amd64
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Fri May 11 17:56:48 CEST 2018: Shutting down Derby engine
+Fri May 11 20:52:23 CEST 2018: Shutting down Derby engine
 ----------------------------------------------------------------
-Fri May 11 17:56:48 CEST 2018:
-Shutting down instance a816c00e-0163-4feb-4208-000012e4b470 on database directory /home/breugnot/Development/Java/workspace/Phosphore/gamedb with class loader sun.misc.Launcher$AppClassLoader@7d4991ad 
+Fri May 11 20:52:23 CEST 2018:
+Shutting down instance a816c00e-0163-508c-0248-00001420abe8 on database directory /home/breugnot/Development/Java/workspace/Phosphore/gamedb with class loader sun.misc.Launcher$AppClassLoader@7d4991ad 
 ----------------------------------------------------------------

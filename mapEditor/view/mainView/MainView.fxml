@@ -44,7 +44,7 @@
 	<center>
 		<BorderPane fx:id="MapBorderPane" BorderPane.alignment="CENTER">
 			<center>
-				<ScrollPane prefHeight="200.0" prefWidth="200.0" />
+				<ScrollPane hvalue="0.5" prefHeight="200.0" prefWidth="200.0" vvalue="0.5" />
 			</center>
 		</BorderPane>
 	</center>
