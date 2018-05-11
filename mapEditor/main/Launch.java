@@ -21,8 +21,6 @@ public class Launch extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Launch.class.getResource("/view/mainView/MainView.fxml"));
 			root = (BorderPane) loader.load();
-			MainViewController controller = loader.getController();
-			controller.setToolBars();
 			scene = new Scene(root);
 			primaryStage.setScene(scene);
 			// primaryStage.setMinHeight(600);

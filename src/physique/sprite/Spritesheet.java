@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javafx.scene.Scene;
@@ -41,6 +42,10 @@ public class Spritesheet {
 		return image;
 	}
 	
+	public HashMap<Pair<Integer, Integer>, Image> getTileSet(){
+		return TileSet;
+	}
+	
 	public void loadImage() {
 		image = new Image("file:ressources/spritesheets/"+name+".png");
 	}
@@ -49,20 +54,11 @@ public class Spritesheet {
 		int width = (int) Math.floorDiv((int) image.getWidth(), 17);
 		int height = (int) Math.floorDiv((int) image.getHeight(), 17);
 		
-
-		Stage test = new Stage();
-		TilePane a = new TilePane();
-		
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < height; y++) {
 				Image tile = new WritableImage(image.getPixelReader(), 1+x*17, 1+y*17, 16, 16);
 				TileSet.put(new Pair<>(x, y), tile);
-				a.getChildren().add(new ImageView(tile));
 			}
 		}
-		
-		Scene sc = new Scene(a);
-		test.setScene(sc);
-		test.show();
 	}
 }

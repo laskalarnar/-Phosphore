@@ -19,9 +19,9 @@ public class Tile extends ObjectGame{
 	private Spritesheet spritesheet;
 	private Pair<Integer, Integer> spritesheetCoordinates;
 	
-	public Tile(Spritesheet spritesheet, int x, int y) {
+	public Tile(Spritesheet spritesheet, Pair<Integer, Integer> coordinates) {
 		this.spritesheet = spritesheet;
-		spritesheetCoordinates = new Pair<>(x, y);
+		this.spritesheetCoordinates = spritesheetCoordinates;
 	}
 	
 	public Tile(ImageView floor, Interactable interactable, boolean walkable) {
