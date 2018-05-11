@@ -3,7 +3,6 @@ package view.mainView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import database.simpleTiles.SimpleTileDB;
 import database.simpleTiles.SimpleTilesLoader;
@@ -12,18 +11,14 @@ import database.spritesheets.SpritesheetsLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -31,6 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import physique.sprite.Spritesheet;
 import physique.tile.SimpleTile;
+import physique.world.Map;
+import view.map.newMap.NewMapController;
 import view.toolbars.ColumnToolBarController;
 import view.toolbars.RowToolBarController;
 
@@ -118,6 +115,41 @@ public class MainViewController {
 			selectedTileCell = tile;
 			selectedTileCell.select();
 		});
+	}
+	
+	private void displayMap(Map map) {
+		AnchorPane mapAnchorPane = new AnchorPane();
+		for(int x = 0; x < map.getMapXX(); x++) {
+			for(int y = 0; y < map.getMapYY(); y++) {
+				SimpleTile tile = map.getTileArray()[x][y];
+				ImageView img = new ImageView(tile.getSpritesheet().getTile(tile.getSpritesheetCoordinates()));
+				mapAnchorPane.getChildren().add(img);
+				AnchorPane.setTopAnchor(img, (double) x*16);
+				AnchorPane.setLeftAnchor(img, (double) y*16);
+			}
+		}
+		MapBorderPane.setCenter(mapAnchorPane);
+	}
+	
+	@FXML
+	private void handleNewMap() {
+		try {
+			AnchorPane root;
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/map/newMap/NewMapView.fxml"));
+			root = (AnchorPane) loader.load();
+			NewMapController newMapController = loader.getController();
+			newMapController.setMainViewController(this);
+			Scene scene = new Scene(root);
+			Stage newMapStage = new Stage();
+			newMapController.setStage(newMapStage);
+			newMapStage.setResizable(false);
+			newMapStage.setTitle("New Map");
+			newMapStage.setScene(scene);
+			newMapStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private class TileCell extends AnchorPane {

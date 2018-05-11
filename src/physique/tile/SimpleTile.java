@@ -63,6 +63,10 @@ public class SimpleTile extends ObjectGame{
 		this.interactable = interactable;
 	}
 	
+	public Spritesheet getSpritesheet() {
+		return spritesheet;
+	}
+	
 	public Pair<Integer, Integer> getSpritesheetCoordinates(){
 		return spritesheetCoordinates;
 	}
